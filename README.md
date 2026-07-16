@@ -84,24 +84,7 @@ each build:
 
 ---
 
-## 💼 Experience Highlights
-
-- **Lead Software Engineer — Pilot Company (Pilot Flying J)** — High-availability,
-  high-throughput logistics & fuel-delivery backends on AWS serverless,
-  supporting millions of daily transactions.
-- **Software Engineer — BASF Enzymes** — High-throughput screening dashboards and
-  data-pipeline automation that cut manual, error-prone workflows by 90%+.
-
 **Certifications** · AWS Certified Developer – Associate · AWS Certified Cloud Practitioner
-
----
-
-## 📫 Get in Touch
-
-- 📧 **yap2k14@gmail.com**
-- 💼 **[linkedin.com/in/aswiniprasadyalavarthy](https://www.linkedin.com/in/aswiniprasadyalavarthy/)**
-
----
 
 <sub>Case studies describe architecture and engineering approach only.
 Proprietary client data, credentials, and business specifics are intentionally
