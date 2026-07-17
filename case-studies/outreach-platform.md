@@ -108,13 +108,13 @@ custom argument (with message-id fallback), and **filters machine opens**
 
 ## Tech Stack
 
-| Layer | Technologies |
+| | |
 | :-- | :-- |
-| **Outreach API** | Python 3.11 · FastAPI 0.115 · asyncpg · Pydantic v2 · JWT · httpx (proxy) · GCS (attachments) |
-| **Shared Email Service** | FastAPI · asyncpg · Anthropic Claude · SendGrid · Google Cloud Tasks · GCS · API-key auth |
-| **Outreach UI** | Vite 5 · React 18 · TypeScript (strict) · Tiptap (rich-text) · React Router 7 · nginx |
-| **Data** | PostgreSQL (Cloud SQL) · `outreach` + `shared_email_service` schemas · JSONB filters + engagement metrics |
-| **Cloud & CI/CD** | Cloud Run · Cloud Tasks · Cloud SQL · GCS · GitHub Actions + Workload Identity Federation |
+| **Outreach API** | ![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=flat&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI_0.115-009688?style=flat&logo=fastapi&logoColor=white) ![asyncpg](https://img.shields.io/badge/asyncpg-316192?style=flat&logo=postgresql&logoColor=white) ![Pydantic](https://img.shields.io/badge/Pydantic_v2-E92063?style=flat&logo=pydantic&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white) ![httpx](https://img.shields.io/badge/httpx-2A6DB2?style=flat) |
+| **Shared Email Service** | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white) ![Anthropic](https://img.shields.io/badge/Anthropic_Claude-D97757?style=flat&logo=anthropic&logoColor=white) ![SendGrid](https://img.shields.io/badge/SendGrid-1A82E2?style=flat&logo=maildotru&logoColor=white) ![Cloud Tasks](https://img.shields.io/badge/Cloud_Tasks-4285F4?style=flat&logo=googlecloud&logoColor=white) ![GCS](https://img.shields.io/badge/Cloud_Storage-4285F4?style=flat&logo=googlecloud&logoColor=white) |
+| **Outreach UI** | ![Vite](https://img.shields.io/badge/Vite_5-646CFF?style=flat&logo=vite&logoColor=white) ![React](https://img.shields.io/badge/React_18-61DAFB?style=flat&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) ![Tiptap](https://img.shields.io/badge/Tiptap-000000?style=flat&logo=tiptap&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=reactrouter&logoColor=white) ![nginx](https://img.shields.io/badge/nginx-009639?style=flat&logo=nginx&logoColor=white) |
+| **Data** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white) ![JSONB](https://img.shields.io/badge/JSONB_filters-336791?style=flat&logo=postgresql&logoColor=white) ![Cloud SQL](https://img.shields.io/badge/Cloud_SQL-4285F4?style=flat&logo=googlecloud&logoColor=white) |
+| **Cloud & CI/CD** | ![Cloud Run](https://img.shields.io/badge/Cloud_Run-4285F4?style=flat&logo=googlecloud&logoColor=white) ![Cloud Tasks](https://img.shields.io/badge/Cloud_Tasks-4285F4?style=flat&logo=googlecloud&logoColor=white) ![GCS](https://img.shields.io/badge/Cloud_Storage-4285F4?style=flat&logo=googlecloud&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white) |
 
 ---
 

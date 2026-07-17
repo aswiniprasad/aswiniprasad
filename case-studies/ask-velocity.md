@@ -122,13 +122,13 @@ off-by-one and DST bugs in digests, analytics, and lease-expiration windows.
 
 ## Tech Stack
 
-| Layer | Technologies |
+| | |
 | :-- | :-- |
-| **Backend** | Python 3.11 · FastAPI · asyncpg (pooled, 5–20 conns) · Pydantic v2 · JWT (HS256) · orjson |
-| **Frontend** | React 18 · Material UI 7 · React Router 7 · Axios (JWT interceptors) · Leaflet · ECharts |
-| **Data** | PostgreSQL (schema-per-tenant) · PostGIS · shared `flight_history` store |
-| **Integrations** | Aviation flight-data API · HubSpot · OpenSky Network · SendGrid · Twilio |
-| **Cloud & CI/CD** | Cloud Run · Cloud SQL · Cloud Scheduler · Secret Manager · GitHub Actions + Workload Identity Federation |
+| **Backend** | ![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=flat&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white) ![asyncpg](https://img.shields.io/badge/asyncpg-316192?style=flat&logo=postgresql&logoColor=white) ![Pydantic](https://img.shields.io/badge/Pydantic_v2-E92063?style=flat&logo=pydantic&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-000000?style=flat&logo=jsonwebtokens&logoColor=white) |
+| **Frontend** | ![React](https://img.shields.io/badge/React_18-61DAFB?style=flat&logo=react&logoColor=black) ![MUI](https://img.shields.io/badge/Material_UI-007FFF?style=flat&logo=mui&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat&logo=reactrouter&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white) ![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=flat&logo=leaflet&logoColor=white) ![ECharts](https://img.shields.io/badge/ECharts-AA344D?style=flat&logo=apacheecharts&logoColor=white) |
+| **Data** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white) ![PostGIS](https://img.shields.io/badge/PostGIS-4169E1?style=flat&logo=postgresql&logoColor=white) ![schema-per-tenant](https://img.shields.io/badge/schema--per--tenant-336791?style=flat) |
+| **Integrations** | ![Aviation data API](https://img.shields.io/badge/Aviation_data_API-1A1A2E?style=flat&logo=cloudflare&logoColor=white) ![HubSpot](https://img.shields.io/badge/HubSpot-FF7A59?style=flat&logo=hubspot&logoColor=white) ![OpenSky](https://img.shields.io/badge/OpenSky_Network-0B3D91?style=flat) ![SendGrid](https://img.shields.io/badge/SendGrid-1A82E2?style=flat&logo=maildotru&logoColor=white) ![Twilio](https://img.shields.io/badge/Twilio-F22F46?style=flat&logo=twilio&logoColor=white) |
+| **Cloud & CI/CD** | ![Cloud Run](https://img.shields.io/badge/Cloud_Run-4285F4?style=flat&logo=googlecloud&logoColor=white) ![Cloud SQL](https://img.shields.io/badge/Cloud_SQL-4285F4?style=flat&logo=googlecloud&logoColor=white) ![Cloud Scheduler](https://img.shields.io/badge/Cloud_Scheduler-4285F4?style=flat&logo=googlecloud&logoColor=white) ![Secret Manager](https://img.shields.io/badge/Secret_Manager-4285F4?style=flat&logo=googlecloud&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white) |
 
 ---
 

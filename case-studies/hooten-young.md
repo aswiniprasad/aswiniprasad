@@ -140,13 +140,13 @@ consistent; reference-conditioned modes preserve product/bottle shape.
 
 ## Tech Stack
 
-| Layer | Technologies |
+| | |
 | :-- | :-- |
-| **Sales backend** | Python 3.12 · FastAPI · SQLAlchemy 2.0 async · asyncpg · openpyxl/pandas · structlog · uv |
-| **Marketing backend** | Python 3.12 · FastAPI · SQLAlchemy async · **pgvector** · Alembic · Anthropic · Replicate · Vertex AI |
-| **Dashboard** | React 18 · Vite 5 · TypeScript (strict) · MUI 6 · TanStack Query 5 · Recharts |
-| **Data** | PostgreSQL (Cloud SQL) · schemas for sales / depletions / auth / field · pgvector |
-| **Cloud & CI/CD** | Cloud Run (per-env) · Cloud Storage · Secret Manager · GitHub Actions (auto-deploy dev; tagged prod releases with approval) |
+| **Sales backend** | ![Python](https://img.shields.io/badge/Python_3.12-3776AB?style=flat&logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy_2.0-D71F00?style=flat&logo=sqlalchemy&logoColor=white) ![asyncpg](https://img.shields.io/badge/asyncpg-316192?style=flat&logo=postgresql&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-150458?style=flat&logo=pandas&logoColor=white) ![uv](https://img.shields.io/badge/uv-DE5FE9?style=flat&logo=uv&logoColor=white) |
+| **Marketing backend** | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white) ![pgvector](https://img.shields.io/badge/pgvector-4169E1?style=flat&logo=postgresql&logoColor=white) ![Alembic](https://img.shields.io/badge/Alembic-6BA81E?style=flat) ![Anthropic](https://img.shields.io/badge/Anthropic_Claude-D97757?style=flat&logo=anthropic&logoColor=white) ![Replicate](https://img.shields.io/badge/Replicate_Flux-000000?style=flat&logo=replicate&logoColor=white) ![Vertex AI](https://img.shields.io/badge/Vertex_AI_Veo-4285F4?style=flat&logo=googlecloud&logoColor=white) |
+| **Dashboard** | ![React](https://img.shields.io/badge/React_18-61DAFB?style=flat&logo=react&logoColor=black) ![Vite](https://img.shields.io/badge/Vite_5-646CFF?style=flat&logo=vite&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white) ![MUI](https://img.shields.io/badge/MUI_6-007FFF?style=flat&logo=mui&logoColor=white) ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=flat&logo=reactquery&logoColor=white) ![Recharts](https://img.shields.io/badge/Recharts-22B5BF?style=flat) |
+| **Data** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white) ![pgvector](https://img.shields.io/badge/pgvector-4169E1?style=flat&logo=postgresql&logoColor=white) ![Cloud SQL](https://img.shields.io/badge/Cloud_SQL-4285F4?style=flat&logo=googlecloud&logoColor=white) |
+| **Cloud & CI/CD** | ![Cloud Run](https://img.shields.io/badge/Cloud_Run-4285F4?style=flat&logo=googlecloud&logoColor=white) ![Cloud Storage](https://img.shields.io/badge/Cloud_Storage-4285F4?style=flat&logo=googlecloud&logoColor=white) ![Secret Manager](https://img.shields.io/badge/Secret_Manager-4285F4?style=flat&logo=googlecloud&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=githubactions&logoColor=white) |
 
 ---
 
