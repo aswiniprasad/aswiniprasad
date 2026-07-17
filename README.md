@@ -1,4 +1,4 @@
-<h1 align="center">Hi there, I'm Prasad! 👋 <sub><i>he/him</i></sub></h1>
+<h1 align="center">Hi there, I'm Prasad! 👋</h1>
 
 <p align="center">
   Full-stack Software Engineer · Building and shipping production AI products end to end<br/>
