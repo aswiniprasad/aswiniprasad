@@ -1,105 +1,162 @@
 # Hooten Young — AI Sales & Marketing Intelligence Platform
 
-> An internal intelligence platform for a premium American spirits brand: an
+> A two-sided intelligence platform for a premium American spirits brand: an
 > idempotent, auditable sales/depletions analytics engine on one side, and a
-> multi-model AI marketing engine with built-in regulatory compliance on the
-> other — replacing hand-built spreadsheets and a mostly manual content process.
+> content-intelligence engine (task-routed LLMs + RAG + multimodal media
+> generation) with built-in regulatory compliance on the other.
 
-**Role:** Architect / Full-Stack & AI Engineer
-**Stack:** Python 3.12 · FastAPI · SQLAlchemy 2.0 (async) · PostgreSQL + pgvector · React · Vite · TypeScript · Claude · OpenAI · Gemini / Vertex AI · Replicate (Flux) · Google Cloud Run
-**Domain:** Consumer goods / spirits — sales analytics + marketing AI
+<table>
+<tr><td><b>Role</b></td><td>Architect / Full-Stack &amp; AI Engineer</td></tr>
+<tr><td><b>Domain</b></td><td>Consumer goods · spirits — sales analytics + marketing AI</td></tr>
+<tr><td><b>Shape</b></td><td>Monorepo · 3 independently deployed services · shared Postgres</td></tr>
+<tr><td><b>Core stack</b></td><td>Python 3.12 · FastAPI · SQLAlchemy 2.0 (async) · PostgreSQL + pgvector · React · Vite · TypeScript · Anthropic Claude · Replicate · Vertex AI</td></tr>
+</table>
 
 ---
 
-## The Problem
+## Overview
 
 A growing spirits brand had two data-dependent needs:
 
 1. **Sales leadership** wanted weekly visibility into wholesale sales and
    *depletions* (true retail sell-through) — reporting the team previously
-   assembled by hand in spreadsheets.
+   rebuilt by hand in spreadsheets — plus a field-rep tool to work accounts.
 2. **Marketing** wanted to understand what was working across social media,
-   generate on-brand content fast, and stay inside strict alcohol-advertising
-   regulations.
+   generate on-brand content fast, and stay inside strict alcohol-advertising law.
 
-Both came down to **trust**: reproducible numbers with an audit trail, and AI
-output that's on-brand *and* legally compliant.
+Both reduce to one hard requirement: **trust** — reproducible numbers with an
+audit trail, and AI output that is on-brand *and* legally compliant.
+
+The platform is a monorepo of three independently deployed Cloud Run services —
+a **sales** backend, a **marketing** backend, and a **React dashboard** — over a
+shared PostgreSQL database.
 
 ---
 
 ## Part 1 — Sales & Depletions Analytics
 
-Turns weekly wholesale sales and depletion data into reporting the sales team
-used to build by hand — **saving roughly 8–10 hours per week**.
+Turns weekly wholesale and depletion exports into decision-ready reporting the
+team used to assemble by hand.
 
-- **Idempotent, auditable ingestion** — every uploaded file is SHA-256 hashed
-  (re-uploads are no-ops), fact tables carry natural-key uniqueness (corrections
-  upsert in place), and every row traces back to its source file. No destructive
-  deletes.
-- **Format-resilient parsing** — broker-specific parsers convert messy exports
-  into a stable canonical model; when a format changes, only the parser swaps.
-- **Decision-ready analytics** — coverage gaps, **distributor-concentration
-  risk**, and cross-sell patterns that **surface growth opportunities and
-  at-risk accounts previously invisible**.
-- **Field-sales CRM** — generates **a prioritized daily call list per rep**
-  across **5 user roles**, ranked by account value, recent activity, and
-  follow-up timing.
+### Idempotent, auditable ingestion
+Weekly xlsx files are unreliable (duplicates, retransmissions, corrections), so
+ingestion is modeled as a **ledger**:
+
+- Every uploaded file is **SHA-256 hashed** against a `file_uploads` table with a
+  `UNIQUE` constraint — re-uploading the same file is a no-op.
+- Fact rows use natural keys (e.g. `account × product × month`) and
+  **`INSERT … ON CONFLICT DO UPDATE`** with a guard so unchanged rows are true
+  no-ops; a corrected file upserts only what changed, in place.
+- Every upload records processed/inserted/updated/skipped/failed counts and a
+  status — full lineage, no destructive deletes.
+
+### High-volume, format-resilient parsing
+A ~130k-row file is ingested in a **three-phase bulk pipeline** — resolve
+products, resolve accounts, then batch-upsert facts (500 per batch, each in a
+savepoint for fault isolation) — collapsing ~130k round-trips into a few hundred
+queries (minutes → seconds). Broker exports have shipped in **four different
+layouts** over time, so parsers **auto-detect the layout** (by locating the
+`Products` header) and convert every variant into one canonical model; a new
+layout swaps a parser, not the pipeline.
+
+### Strategic analytics
+Beyond KPIs and trend/product/distributor/state breakdowns, the sales API
+computes genuinely strategic views:
+
+- **White-space matrix** — product × state coverage, quantifying untapped
+  combinations (gap count / gap %).
+- **Order analysis** — order-size buckets, **cross-sell pairs** (which SKUs ship
+  together), and per-distributor order frequency.
+- **Risk dashboard** — distributor-**concentration risk** via a Herfindahl index
+  and top-N cumulative share.
+
+### Field-sales CRM
+A role-gated field tool generates a **prioritized daily call list** per rep,
+bucketing accounts by recency (Active / At-Risk / Cold) and honoring manual
+pins, with territory assignment (auto-seeded from the rep's home state) and an
+audited visit-note timeline. Access is governed by a **data-driven RBAC** with
+**5 roles** (admin, distribution, depletions, marketing, field rep) — adding a
+role is a row insert, not a code change.
 
 ---
 
 ## Part 2 — AI Marketing Intelligence
 
-An automated weekly job analyzes **6,000+ social posts and 80+ GB of media**,
-replacing a mostly manual, multi-week content process.
+A weekly pipeline ingests social + editorial signal, mines patterns, and
+generates compliance-checked, on-brand content.
 
-- **Multi-model LLM pipeline** — each task is **routed to the best-fit provider
-  for cost and quality** (Claude / OpenAI / Gemini), rather than forcing one
-  model to do everything.
-- **RAG over social signal** — content and engagement signals are embedded into
-  **pgvector** for similarity search and pattern mining (hook types, timing,
-  caption-length effects), grounding briefs in real competitive data.
-- **Content briefs & drafts** — the pipeline produces briefs and on-brand draft
-  copy the team can act on immediately.
-- **On-brand multimodal media** — image generation (Replicate / Flux) prepends a
-  fixed brand-aesthetic style and injects reference images as few-shot examples
-  for visual consistency.
-- **Compliance-gated output** — a **TTB (alcohol-marketing) compliance review**
-  runs on **every** AI-generated asset before it reaches the team, removing a
-  manual legal review from the workflow.
+### Task-routed, multi-model LLM pipeline
+Rather than force one model to do everything, each task is **routed to the
+best-fit model for cost and quality**:
+
+| Task | Model tier |
+| :-- | :-- |
+| Content briefs, scripts, compliance reasoning | Claude **Sonnet** |
+| High-volume article/feature classification | Claude **Haiku** (cheaper, faster) |
+| Semantic embeddings (RAG) | embedding model → **pgvector** |
+| Image generation | **Replicate / Flux** (text + reference-conditioned) |
+| Video generation | **Vertex AI / Veo** |
+
+### The three-mode brief engine
+An orchestration layer measures how saturated a trend is across tracked
+competitor accounts and picks a strategy:
+
+- **Follow** — apply proven patterns when competitors are converging on what
+  works.
+- **Counter** — recommend a contrarian angle when everyone looks the same.
+- **Pioneer** — surface cultural trends (trends feeds, editorial sources, forum
+  culture) the category hasn't touched yet.
+
+Signal is pulled by pluggable scrapers, embedded into **pgvector** for
+similarity/pattern mining, and grounds the brief the model writes.
+
+### Compliance-gated generation
+Alcohol marketing is heavily regulated, so **every** AI-generated asset passes an
+automated **compliance review** (federal TTB + state + platform rules) that
+returns a verdict of `compliant | revise | block`. On `revise` it returns quoted
+phrases and suggested rewrites that preserve brand voice and can be auto-applied;
+compliance is a **hard gate in the pipeline**, not an afterthought.
+
+### On-brand multimodal media
+Image (Flux) and video (Veo) generation prepend a fixed brand-aesthetic style and
+inject reference images as few-shot examples, keeping generated media visually
+consistent; reference-conditioned modes preserve product/bottle shape.
 
 ---
 
 ## Engineering Challenges & Solutions
 
 | Challenge | Solution |
-|---|---|
-| Reproducible numbers from messy weekly files | SHA-256 dedup + natural-key upserts + per-row file lineage |
-| Broker format drift | Parser/model separation — only the parser changes |
-| Best model for each job | Multi-model routing by cost/quality per task |
+| :-- | :-- |
+| Reproducible numbers from messy weekly files | SHA-256 file ledger + natural-key upserts + per-row lineage |
+| 130k-row files without minute-long ingests | Three-phase bulk resolve/upsert with per-batch savepoints |
+| Broker format drift | Layout auto-detection → single canonical model |
+| Best model per job | Task-routed Claude tiers (Sonnet ↔ Haiku) + dedicated media models |
 | Grounding AI in real signal | RAG over pgvector-embedded social data |
-| Regulated AI output | Automated TTB compliance review as a hard gate |
-| Consistent AI media | Fixed brand-style prompt prefix + reference-image few-shots |
-| Frontend/backend type drift | Pydantic schemas mirrored 1:1 in TypeScript; `Decimal` as string to preserve precision |
+| Regulated AI output | Compliance review as a hard `compliant/revise/block` gate |
+| Frontend/backend type drift | Pydantic schemas mirrored in TypeScript; `Decimal` carried as string to preserve precision |
 
 ---
 
-## Infrastructure & Delivery
+## Tech Stack
 
-- **Google Cloud Run** (per-service, per-environment) · **Cloud SQL** (Postgres +
-  pgvector) · **Cloud Storage** (raw + generated media) · **Secret Manager**
-- **GitHub Actions** — auto-deploy to dev on `main`; tagged releases to prod with
-  approval
-- Strict typing throughout (`mypy --strict`, TypeScript strict); ruff + pytest in
-  pre-commit
+| Layer | Technologies |
+| :-- | :-- |
+| **Sales backend** | Python 3.12 · FastAPI · SQLAlchemy 2.0 async · asyncpg · openpyxl/pandas · structlog · uv |
+| **Marketing backend** | Python 3.12 · FastAPI · SQLAlchemy async · **pgvector** · Alembic · Anthropic · Replicate · Vertex AI |
+| **Dashboard** | React 18 · Vite 5 · TypeScript (strict) · MUI 6 · TanStack Query 5 · Recharts |
+| **Data** | PostgreSQL (Cloud SQL) · schemas for sales / depletions / auth / field · pgvector |
+| **Cloud & CI/CD** | Cloud Run (per-env) · Cloud Storage · Secret Manager · GitHub Actions (auto-deploy dev; tagged prod releases with approval) |
 
 ---
 
 ## Outcome
 
 Sales leadership gets trustworthy, auditable analytics and a prioritized daily
-call list from otherwise-messy weekly data, and marketing gets a multi-model AI
+call list from otherwise-messy weekly data; marketing gets a task-routed AI
 engine that produces on-brand, compliance-checked content grounded in real
-competitive signal — two hard problems (data integrity and regulated generative
-AI) solved in one platform.
+competitive signal. Two genuinely hard problems — **data integrity** and
+**regulated generative AI** — solved in one platform.
 
-<sub>Proprietary data, sources, and credentials omitted.</sub>
+<sub>Client identity generalized. Proprietary data, sources, model prompts, and
+credentials are omitted.</sub>
