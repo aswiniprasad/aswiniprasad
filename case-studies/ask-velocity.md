@@ -139,6 +139,3 @@ configuration (a schema, a registry entry, a branded build, a backfill), daily
 prospecting is automated end-to-end, and operators get a live, data-grounded
 view of demand — from raw flight activity all the way through enrichment,
 personalized outreach, and pipeline analytics.
-
-<sub>Individual FBO client identities and the flight-data vendor are generalized.
-Proprietary data, infrastructure identifiers, and credentials are omitted.</sub>

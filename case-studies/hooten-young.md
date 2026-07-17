@@ -157,6 +157,3 @@ call list from otherwise-messy weekly data; marketing gets a task-routed AI
 engine that produces on-brand, compliance-checked content grounded in real
 competitive signal. Two genuinely hard problems — **data integrity** and
 **regulated generative AI** — solved in one platform.
-
-<sub>Client identity generalized. Proprietary data, sources, model prompts, and
-credentials are omitted.</sub>

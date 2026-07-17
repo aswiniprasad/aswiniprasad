@@ -124,6 +124,3 @@ One hardened email backbone any product can drive — with AI-assisted compositi
 deliverability-safe organic sending, and real-time, tamper-proof engagement
 analytics. A clean example of extracting shared infrastructure into a multi-tenant
 service without sacrificing data isolation or metric integrity.
-
-<sub>Client/product identities generalized. Credentials, infrastructure
-identifiers, and proprietary data are omitted.</sub>
