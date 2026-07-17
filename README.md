@@ -95,11 +95,11 @@ _Actively building — deployed to production and serving live clients._
 | :-- | :-- | :-- |
 | **Lead Software Engineer** | Pilot Company (Pilot Flying J) | Jun 2021 – Present |
 | **Software Engineer** | BASF Enzymes | Aug 2017 – Jun 2021 |
-| **Application Developer** | Kwikee | Nov 2016 – Aug 2017 |
+| **Application Developer** | Kwikee _(now a Syndigo company)_ | Nov 2016 – Aug 2017 |
 
 - **Pilot Company** — High-throughput logistics & fuel-delivery backends (TRIPS) supporting **millions of daily transactions**; architected an end-to-end automated fuel-allocation pipeline (DTN TABS via FTP) that replaced a manual, error-prone process. AWS serverless (Lambda, API Gateway, DynamoDB, SNS/SQS, RDS).
 - **BASF Enzymes** — Led the High-Throughput Screening dashboard and pipeline automation, **eliminating manual Excel workflows and cutting human error 90%+**; Riffyn integration Execution Engine; Celery/RabbitMQ pipelines; Docker/K8s/GitLab CI.
-- **Kwikee** — Full-stack PIM work (Hy-Vee Vendor Portal) and GDSN ingestion pipelines cutting manual effort **80%+**.
+- **Kwikee** _(now a Syndigo company)_ — Full-stack PIM work (Hy-Vee Vendor Portal) and GDSN ingestion pipelines cutting manual effort **80%+**.
 
 ### 🎓 Education & Certifications
 
