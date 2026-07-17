@@ -7,7 +7,7 @@
 
 **Live:** [askvelocity.ai](https://askvelocity.ai)
 **Role:** Architect / Full-Stack & AI Engineer
-**Stack:** Python · FastAPI · asyncpg · React · Material UI · Leaflet · PostgreSQL (PostGIS / pgvector) · Google Cloud Run · JETNET · HubSpot · SendGrid · Twilio
+**Stack:** Python · FastAPI · asyncpg · React · Material UI · Leaflet · PostgreSQL (PostGIS / pgvector) · Google Cloud Run · Aviation data APIs · HubSpot · SendGrid · Twilio
 **Domain:** Private aviation / FBO demand generation
 
 ---
@@ -37,7 +37,7 @@ tenant.
                               │
         ┌─────────────────────┼─────────────────────┐
    Shared services        Per-tenant Postgres     Integrations
-   (ingestion, ranking,   schemas (isolated       JETNET · HubSpot
+   (ingestion, ranking,   schemas (isolated       Flight data · HubSpot
     outreach, digests)    per FBO client)          SendGrid · Twilio
 ```
 
@@ -53,8 +53,9 @@ tenant.
 ## Key Features
 
 ### Flight-activity ingestion at scale
-A daily pipeline pulls private-jet flight activity from the **JETNET API across
-30+ airports**, then automatically identifies and enriches high-value prospects —
+A daily pipeline pulls private-jet flight activity from **multiple aviation data
+sources across 30+ airports**, then automatically identifies and enriches
+high-value prospects —
 **removing several hours of manual flight-log review each day**. The sync uses a
 rolling window with a safety gate so an upstream outage halts loudly instead of
 importing stale data, and a resumable backfill recovers cleanly.

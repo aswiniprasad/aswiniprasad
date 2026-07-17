@@ -42,12 +42,12 @@ _Actively building — deployed to production and serving live clients._
 |  |  |
 | --- | --- |
 | 🏢 **Onboarding** | New FBO clients live in **~1 day** (from weeks) — shared backend, isolated per-tenant data |
-| 🛬 **Data pipeline** | Ingests private-jet activity from **JETNET across 30+ airports**, auto-enriching prospects daily |
+| 🛬 **Data pipeline** | Ingests private-jet activity from **multiple aviation data sources across 30+ airports**, auto-enriching prospects daily |
 | 🎯 **Lead ranking** | Data-completeness tiers + contact-quality scoring — **~90% less manual research** |
 | ✉️ **AI outreach** | Personalized email/SMS for **10,000+ prospects per campaign**, with open/click/bounce tracking |
 | 📊 **Dashboards** | Live air-traffic maps · HubSpot CRM sync · real-time **What-If revenue planner** |
 
-**Stack:** FastAPI · React · PostgreSQL/PostGIS · Cloud Run · JETNET · HubSpot · SendGrid · Twilio &nbsp; • &nbsp; **[→ Read the case study](./case-studies/ask-velocity.md)**
+**Stack:** FastAPI · React · PostgreSQL/PostGIS · Cloud Run · Aviation data APIs · HubSpot · SendGrid · Twilio &nbsp; • &nbsp; **[→ Read the case study](./case-studies/ask-velocity.md)**
 
 <br/>
 
