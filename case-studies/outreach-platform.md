@@ -56,11 +56,16 @@ product could drive, with three things done right:
   batch re-evaluates against fresh contact data.
 - **Rich template editor** (Tiptap) with merge variables (`{{first_name}}`,
   `{{company}}`, …) and GCS-backed attachments.
-- **AI email drafting** — generate a draft from plain-English intent, or refine
-  an existing draft (shorten, formalize, rewrite).
-- **Organic sending** — reputation-aware, rate-limited delivery.
-- **Engagement tracking** — per-recipient open/click/bounce counts and
-  timestamps, updated in real time.
+- **AI email drafting** — generate an on-brand draft from a short prompt, or
+  refine an existing one (shorten, formalize, rewrite) — **cutting campaign
+  creation from 30–45 minutes to a couple of minutes**.
+- **Organic "drip" sending** — scheduled, throttled, timezone-aware delivery with
+  daily volume caps and audience targeting (tag / industry / company) — hands-off
+  campaigns that **never email a contact twice**.
+- **Engagement tracking** — per-recipient open/click/bounce counts and timestamps
+  in real time, with **machine-open filtering, domain suppression, and
+  contact-quality ranking** to protect sender reputation and give real ROI
+  visibility.
 
 ---
 
