@@ -1,11 +1,8 @@
 <h1 align="center">Hi there, I'm Prasad! 👋</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/He%2FHim-6E7681?style=flat-square" alt="pronouns: he/him" />
-</p>
-
-<p align="center">
-  Full-stack Software Engineer · Building and shipping production AI products end to end<br/>
+  Full-stack Software Engineer &nbsp;·&nbsp; <sub>he/him</sub><br/>
+  Building and shipping production AI products end to end<br/>
   Applied AI/LLM systems · Full-stack · Cloud-native, event-driven infrastructure
 </p>
 
