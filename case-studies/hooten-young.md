@@ -6,7 +6,7 @@
 > generation) with built-in regulatory compliance on the other.
 
 <table>
-<tr><td><b>Role</b></td><td>Architect / Full-Stack &amp; AI Engineer</td></tr>
+<tr><td><b>Role</b></td><td>Forward Deployed AI Engineer</td></tr>
 <tr><td><b>Domain</b></td><td>Consumer goods · spirits — sales analytics + marketing AI</td></tr>
 <tr><td><b>Shape</b></td><td>Monorepo · 3 independently deployed services · shared Postgres</td></tr>
 <tr><td><b>Core stack</b></td><td>Python 3.12 · FastAPI · SQLAlchemy 2.0 (async) · PostgreSQL + pgvector · React · Vite · TypeScript · Anthropic Claude · Replicate · Vertex AI</td></tr>

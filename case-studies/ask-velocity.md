@@ -7,7 +7,7 @@
 
 <table>
 <tr><td><b>Live</b></td><td><a href="https://askvelocity.ai">askvelocity.ai</a></td></tr>
-<tr><td><b>Role</b></td><td>Architect / Full-Stack &amp; AI Engineer</td></tr>
+<tr><td><b>Role</b></td><td>Forward Deployed AI Engineer</td></tr>
 <tr><td><b>Domain</b></td><td>Private aviation · FBO demand generation</td></tr>
 <tr><td><b>Core stack</b></td><td>Python · FastAPI · asyncpg · React · Material&nbsp;UI · Leaflet · PostgreSQL/PostGIS · Google Cloud Run</td></tr>
 </table>

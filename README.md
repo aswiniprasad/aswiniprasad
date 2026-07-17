@@ -1,7 +1,7 @@
 <h1 align="center">Hi there, I'm Prasad! 👋</h1>
 
 <p align="center">
-  Full-stack Software Engineer · Building and shipping production AI products end to end<br/>
+  Forward Deployed AI Engineer · Building and shipping production AI products end to end<br/>
   Applied AI/LLM systems · Full-stack · Cloud-native, event-driven infrastructure
 </p>
 

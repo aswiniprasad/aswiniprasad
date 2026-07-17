@@ -6,7 +6,7 @@
 > email-delivery backbone.
 
 <table>
-<tr><td><b>Role</b></td><td>Architect / Full-Stack &amp; AI Engineer</td></tr>
+<tr><td><b>Role</b></td><td>Forward Deployed AI Engineer</td></tr>
 <tr><td><b>Domain</b></td><td>Marketing · outbound email infrastructure</td></tr>
 <tr><td><b>Shape</b></td><td>3 services · shared email backbone · shared Postgres (schema-isolated)</td></tr>
 <tr><td><b>Core stack</b></td><td>Python 3.11 · FastAPI · asyncpg · React · Vite · TypeScript · Tiptap · Anthropic Claude · SendGrid · Google Cloud Tasks</td></tr>
