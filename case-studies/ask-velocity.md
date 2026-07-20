@@ -66,6 +66,7 @@ isolated per-client services and schemas.
 | 🛬 **Flight-data ingestion** | Daily sync of private-jet arrivals/departures from a third-party aviation flight-data API into a shared `flight_history` store; airports are added via a config table — no redeploy |
 | 🔎 **Prospect discovery** | Resolves a tail number to reachable contacts by aggregating five sources (owner/operator/company emails + office phones + user-added contacts), deduped and flagged for email/SMS reachability |
 | 📊 **Recurrence & demand analytics** | Surfaces recurring ("transient") aircraft ranked by visit frequency and top home bases per airport — who to prioritize |
+| 🛩️ **Per-aircraft flight movements** | A full movement-analytics section on each aircraft page — 30/60/90-day KPIs (flights, hours, distance, est. fuel & CO₂, utilization), most-visited airports, weekly/day-of-week rhythm, haul mix, a catchment map, and a filterable flight log — plus a *"does this jet visit **your** fields?"* prospect qualifier |
 | ✉️ **AI email/SMS outreach** | Personalized campaigns dispatched through a shared email/SMS backbone (SendGrid + Twilio), batched to scale to thousands of recipients |
 | 🗺️ **Dashboards & live radar** | Leaflet maps of partner-airport flows, plus a live air-traffic radar and traffic heatmaps via the OpenSky Network |
 | 🏢 **Hangar-operator analytics** | For real-estate-focused clients, a live HubSpot deal sync powers occupancy, lease-health, and revenue dashboards |
@@ -113,7 +114,21 @@ historical flight tracks, and hourly traffic **heatmaps**, each with tuned cache
 TTLs (seconds for live state, an hour for heatmaps) to stay responsive without
 hammering the upstream.
 
-### 6. Correct time everywhere
+### 6. Per-aircraft flight-movements analytics
+Each aircraft page has a self-contained movements section backed by two
+read-through endpoints — a **summary** (KPIs, charts, catchment-map data) and a
+paginated **flight log** — that first ensure the tail is fresh (a live upstream
+pull, cooldown-guarded) before serving. The client fetches the **full ~90-day
+log once per tail** and applies the 30/60/90-day window plus every search/route/
+date filter **client-side**, so window switches and filtering are instant with no
+extra round-trips; only the aggregate summary re-queries the DB. Derived
+metrics — great-circle **distance (haversine)**, estimated **fuel burn and CO₂**,
+utilization, and short/medium/long **haul-mix bands** — are computed in SQL, and
+a *"your fields"* qualifier flags whether the tail actually touches the client's
+own airports (turning raw movements into a sales signal). Built once in the
+canonical service/UI and **ported to all four client builds**.
+
+### 7. Correct time everywhere
 All timestamps are stored as `timestamptz` (true UTC instants) and converted to
 local (New York) time only at read/display time — eliminating a whole class of
 off-by-one and DST bugs in digests, analytics, and lease-expiration windows.

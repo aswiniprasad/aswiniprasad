@@ -48,6 +48,7 @@ _Actively building — deployed to production and serving live clients._
 | 🛬 **Data pipeline** | Ingests private-jet activity from **multiple aviation data sources across 30+ airports**, auto-enriching prospects daily |
 | 🎯 **Lead ranking** | Data-completeness tiers + contact-quality scoring — **~90% less manual research** |
 | ✉️ **AI outreach** | Personalized email/SMS for **10,000+ prospects per campaign**, with open/click/bounce tracking |
+| 🛩️ **Aircraft analytics** | Per-tail **flight-movements** view — 30/60/90-day KPIs, route/airport charts, catchment map & a *"visits your fields?"* prospect signal |
 | 📊 **Dashboards** | Live air-traffic maps · HubSpot CRM sync · real-time **What-If revenue planner** |
 
 **Stack:** FastAPI · React · PostgreSQL/PostGIS · Cloud Run · Aviation data APIs · HubSpot · SendGrid · Twilio &nbsp; • &nbsp; **[→ Read the case study](./case-studies/ask-velocity.md)**
